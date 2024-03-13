@@ -305,6 +305,28 @@ abstract class AxisChartPainter<D extends AxisChartData>
           // ignore: cascade_invocations
           tp.layout();
 
+          final decorationPainter = line.label.decoration?.createBoxPainter();
+
+          final decorPadding = line.label.decorationPadding;
+
+          decorationPainter?.paint(
+            canvasWrapper.canvas,
+            label.alignment.withinRect(
+              Rect.fromLTRB(
+                from.dx + padding.left - decorPadding.left,
+                from.dy - padding.bottom - tp.height - decorPadding.top,
+                to.dx - padding.right - tp.width - decorPadding.right,
+                to.dy + padding.top - decorPadding.bottom,
+              ),
+            ),
+            ImageConfiguration(
+              size: Size(
+                tp.width + decorPadding.horizontal,
+                tp.height + decorPadding.vertical,
+              ),
+            ),
+          );
+
           canvasWrapper.drawText(
             tp,
             label.alignment.withinRect(

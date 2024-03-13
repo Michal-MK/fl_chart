@@ -299,6 +299,7 @@ class AxisTitles with EquatableMixin {
     this.axisNameSize = 16,
     this.sideTitles = const SideTitles(),
     this.drawBelowEverything = true,
+    this.drawInsideChart = false,
   });
 
   /// Determines the size of [axisName]
@@ -316,6 +317,9 @@ class AxisTitles with EquatableMixin {
   /// In the future, we will convert tooltips to a widget, that would solve this problem.
   final bool drawBelowEverything;
 
+  /// Place the axis inside the chart instead of reserving a space outside the chart.
+  final bool drawInsideChart;
+
   /// If there is something to show as axisTitles, it returns true
   bool get showAxisTitles => axisNameWidget != null && axisNameSize != 0;
 
@@ -330,6 +334,7 @@ class AxisTitles with EquatableMixin {
       axisNameSize: lerpDouble(a.axisNameSize, b.axisNameSize, t)!,
       sideTitles: SideTitles.lerp(a.sideTitles, b.sideTitles, t),
       drawBelowEverything: b.drawBelowEverything,
+      drawInsideChart: b.drawInsideChart,
     );
   }
 
@@ -340,12 +345,14 @@ class AxisTitles with EquatableMixin {
     double? axisNameSize,
     SideTitles? sideTitles,
     bool? drawBelowEverything,
+    bool? drawInsideChart,
   }) {
     return AxisTitles(
       axisNameWidget: axisNameWidget ?? this.axisNameWidget,
       axisNameSize: axisNameSize ?? this.axisNameSize,
       sideTitles: sideTitles ?? this.sideTitles,
       drawBelowEverything: drawBelowEverything ?? this.drawBelowEverything,
+      drawInsideChart: drawInsideChart ?? this.drawInsideChart,
     );
   }
 
@@ -356,6 +363,7 @@ class AxisTitles with EquatableMixin {
         axisNameSize,
         sideTitles,
         drawBelowEverything,
+        drawInsideChart,
       ];
 }
 
@@ -1124,6 +1132,8 @@ class HorizontalLineLabel extends FlLineLabel with EquatableMixin {
   HorizontalLineLabel({
     EdgeInsets? padding,
     super.style,
+    EdgeInsets? decorationPadding,
+    super.decoration,
     Alignment? alignment,
     super.show = false,
     String Function(HorizontalLine)? labelResolver,
@@ -1131,6 +1141,7 @@ class HorizontalLineLabel extends FlLineLabel with EquatableMixin {
             labelResolver ?? HorizontalLineLabel.defaultLineLabelResolver,
         super(
           padding: padding ?? const EdgeInsets.all(6),
+          decorationPadding: decorationPadding ?? const EdgeInsets.all(6),
           alignment: alignment ?? Alignment.topLeft,
         );
 
@@ -1153,6 +1164,9 @@ class HorizontalLineLabel extends FlLineLabel with EquatableMixin {
       style: TextStyle.lerp(a.style, b.style, t),
       alignment: Alignment.lerp(a.alignment, b.alignment, t),
       labelResolver: b.labelResolver,
+      decorationPadding: EdgeInsets.lerp(
+          a.decorationPadding, b.decorationPadding, t),
+      decoration: Decoration.lerp(a.decoration, b.decoration, t),
       show: b.show,
     );
   }
@@ -1164,6 +1178,8 @@ class HorizontalLineLabel extends FlLineLabel with EquatableMixin {
         show,
         padding,
         style,
+        decorationPadding,
+        decoration,
         alignment,
       ];
 }
@@ -1179,6 +1195,8 @@ class VerticalLineLabel extends FlLineLabel with EquatableMixin {
   VerticalLineLabel({
     EdgeInsets? padding,
     TextStyle? style,
+    EdgeInsets? decorationPadding,
+    super.decoration,
     Alignment? alignment,
     bool? show,
     String Function(VerticalLine)? labelResolver,
@@ -1187,6 +1205,7 @@ class VerticalLineLabel extends FlLineLabel with EquatableMixin {
         super(
           show: show ?? false,
           padding: padding ?? const EdgeInsets.all(6),
+          decorationPadding: decorationPadding ?? const EdgeInsets.all(6),
           style: style ??
               const TextStyle(
                 color: Colors.black,
@@ -1215,6 +1234,9 @@ class VerticalLineLabel extends FlLineLabel with EquatableMixin {
       style: TextStyle.lerp(a.style, b.style, t),
       alignment: Alignment.lerp(a.alignment, b.alignment, t),
       labelResolver: b.labelResolver,
+      decorationPadding: EdgeInsets.lerp(
+          a.decorationPadding, b.decorationPadding, t),
+      decoration: Decoration.lerp(a.decoration, b.decoration, t),
       show: b.show,
     );
   }
@@ -1226,6 +1248,8 @@ class VerticalLineLabel extends FlLineLabel with EquatableMixin {
         show,
         padding,
         style,
+        decorationPadding,
+        decoration,
         alignment,
       ];
 }
