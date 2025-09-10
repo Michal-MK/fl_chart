@@ -1242,6 +1242,8 @@ class HorizontalLineLabel extends FlLineLabel with EquatableMixin {
   HorizontalLineLabel({
     super.padding = const EdgeInsets.all(6),
     super.style,
+    super.decorationPadding = const EdgeInsets.all(4),
+    super.decoration,
     super.alignment = Alignment.topLeft,
     super.show = false,
     super.direction = LabelDirection.horizontal,
@@ -1281,6 +1283,8 @@ class HorizontalLineLabel extends FlLineLabel with EquatableMixin {
         show,
         padding,
         style,
+        decorationPadding,
+        decoration,
         alignment,
         direction,
       ];
@@ -1302,6 +1306,8 @@ class VerticalLineLabel extends FlLineLabel with EquatableMixin {
       fontWeight: FontWeight.bold,
       fontSize: 14,
     ),
+    super.decorationPadding = const EdgeInsets.all(4),
+    super.decoration,
     super.alignment = Alignment.bottomRight,
     super.show = false,
     super.direction = LabelDirection.horizontal,
@@ -1331,6 +1337,8 @@ class VerticalLineLabel extends FlLineLabel with EquatableMixin {
         alignment: Alignment.lerp(a.alignment, b.alignment, t)!,
         labelResolver: b.labelResolver,
         show: b.show,
+        decorationPadding: EdgeInsets.lerp(a.decorationPadding, b.decorationPadding, t)!,
+        decoration: Decoration.lerp(a.decoration, b.decoration, t),
         direction: b.direction,
       );
 
@@ -1341,6 +1349,8 @@ class VerticalLineLabel extends FlLineLabel with EquatableMixin {
         show,
         padding,
         style,
+        decorationPadding,
+        decoration,
         alignment,
         direction,
       ];

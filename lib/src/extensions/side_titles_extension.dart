@@ -6,7 +6,7 @@ extension SideTitlesExtension on AxisTitles {
     if (showAxisTitles) {
       size += axisNameSize;
     }
-    if (showSideTitles) {
+    if (showSideTitles && sideTitleAlignment != SideTitleAlignment.inside) {
       size += sideTitles.reservedSize;
     }
     return size;

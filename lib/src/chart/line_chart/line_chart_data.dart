@@ -842,6 +842,8 @@ abstract class FlLineLabel with EquatableMixin {
     required this.show,
     required this.padding,
     required this.style,
+    required this.decorationPadding,
+    required this.decoration,
     required this.alignment,
     required this.direction,
   });
@@ -855,6 +857,12 @@ abstract class FlLineLabel with EquatableMixin {
   /// Sets style of the drawing text.
   final TextStyle? style;
 
+  /// Inner spaces around the decoration.
+  final EdgeInsets decorationPadding;
+
+  /// Applies decoration to the drawn text.
+  final Decoration? decoration;
+
   /// Aligns the text on the line.
   final Alignment alignment;
 
@@ -867,6 +875,8 @@ abstract class FlLineLabel with EquatableMixin {
         show,
         padding,
         style,
+        decorationPadding,
+        decoration,
         alignment,
         direction,
       ];
